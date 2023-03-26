@@ -8,3 +8,24 @@
   gap: 45px;
   margin: 40px;
 }
+.button-flex{
+display: grid;
+grid-template-columns: repeat(1,1fr);
+}
+.frist-btn{
+  margin-bottom: 10px;
+  background-color: red;
+  color: white;
+}
+.frist-btn:hover{
+  background-color: orange;
+}
+
+.second-btn{
+  margin-bottom: 10px;
+  background-color: red;
+  color: white;
+}
+.second-btn:hover{
+  background-color: orange;
+}

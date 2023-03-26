@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Products from '../Product/Products';
 import './Shop.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRecycle,faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 
 const Shop = () => {
   const [products, setProduct] = useState([])
   const [cart, setCart] = useState([])
-
+  const [price, setPrice] = useState(0)
   useEffect(() => {
     fetch('products.json')
       .then(res => res.json())
@@ -14,9 +16,12 @@ const Shop = () => {
 
 // btn add to cart function
   const handelProduct = (product) =>{
-   console.log('product added')
     const newCart = [...cart ,product]
     setCart(newCart)
+    const newPrice = price+1;
+    console.log(newPrice)
+    setPrice(newPrice)
+
     
   }
 
@@ -36,6 +41,19 @@ const Shop = () => {
       <div className="cart-container">
         <h5>Add To Cart </h5>
         <p>Selected Item : {cart.length}</p>
+        <p>Total Price : {price}</p>
+        <p>Total Shipping Cost : </p>
+        <h4>Grand Total : </h4>
+        <div className='button-flex'>
+        <button className='frist-btn'>
+          Clear Data
+          <FontAwesomeIcon icon={faRecycle} />
+          </button>
+        <button className='second-btn'>
+          Review Order
+          <FontAwesomeIcon icon={faShoppingCart} />
+        </button>
+        </div>
       </div>
     </div>
   );
