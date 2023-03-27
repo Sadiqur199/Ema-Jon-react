@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Products from '../Product/Products';
+import Cart from '../Cart/Cart';
 import './Shop.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRecycle,faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 
 const Shop = () => {
   const [products, setProduct] = useState([])
   const [cart, setCart] = useState([])
-  const [price, setPrice] = useState(0)
+  
   useEffect(() => {
     fetch('products.json')
       .then(res => res.json())
@@ -18,10 +17,6 @@ const Shop = () => {
   const handelProduct = (product) =>{
     const newCart = [...cart ,product]
     setCart(newCart)
-    const newPrice = price+1;
-    console.log(newPrice)
-    setPrice(newPrice)
-
     
   }
 
@@ -39,21 +34,7 @@ const Shop = () => {
         </div>
       </div>
       <div className="cart-container">
-        <h5>Add To Cart </h5>
-        <p>Selected Item : {cart.length}</p>
-        <p>Total Price : {price}</p>
-        <p>Total Shipping Cost : </p>
-        <h4>Grand Total : </h4>
-        <div className='button-flex'>
-        <button className='frist-btn'>
-          Clear Data
-          <FontAwesomeIcon icon={faRecycle} />
-          </button>
-        <button className='second-btn'>
-          Review Order
-          <FontAwesomeIcon icon={faShoppingCart} />
-        </button>
-        </div>
+        <Cart cart={cart}></Cart>
       </div>
     </div>
   );
